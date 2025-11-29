@@ -2,8 +2,17 @@ import React from 'react'
 import { LuLeafyGreen } from "react-icons/lu";
 import { GiChickenOven } from "react-icons/gi";
 import { TiStarFullOutline } from "react-icons/ti";
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../../features/cart/cartSlice';
 
 const Card = ({ item }) => {
+
+  const dispatch = useDispatch();
+
+  const handleAddToCart = () => {
+    dispatch(addToCart(item));
+  }
+
   return (
     <div
       className="
@@ -56,7 +65,7 @@ const Card = ({ item }) => {
         </span>
 
         {/* Add to Cart */}
-        <button className="w-full bg-[#de9e38] rounded-lg text-white py-1 sm:py-2 font-semibold text-[11px] sm:text-xs md:text-sm">
+        <button className="w-full bg-[#de9e38] rounded-lg text-white py-1 sm:py-2 font-semibold text-[11px] sm:text-xs md:text-sm" onClick={handleAddToCart}>
           Add To Cart
         </button>
       </div>

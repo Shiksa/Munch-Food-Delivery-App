@@ -1,8 +1,20 @@
-import React from 'react'
+import React, { use } from 'react'
 import { IoSearchSharp } from "react-icons/io5";
 import { FiShoppingBag } from "react-icons/fi";
+import { useDispatch, useSelector } from 'react-redux';
+import { toggleCart } from '../../features/ui/uiSlice';
+import { selectTotalQuantity } from '../../features/cart/cartSelectors';
 
 const Nav = () => {
+
+  const dispatch = useDispatch()
+
+  const handleToggleCart = () => {
+    dispatch(toggleCart())
+  }
+
+  const totalQuantity = useSelector(selectTotalQuantity);
+
   return (
     <div className='w-full h-16 bg-gray-800 text-white flex justify-between items-center px-5'>
 
@@ -15,9 +27,10 @@ const Nav = () => {
         <input type="search" name='search' placeholder='Search for dishes . . .' autoComplete='off' className=' rounded-md text-black w-full outline-none ' />
       </form>
 
-      <div className='h-10 w-10 flex justify-center items-center 
-      rounded-full relative'>
-        <span className='absolute -top-0.5 -right-0.5 text-[#FCA417] font-bold text-sm'>0</span>
+      <div onClick={handleToggleCart} className={`h-10 w-10 flex justify-center items-center 
+      rounded-full relative
+      `}>
+        <span className='absolute -top-0.5 -right-0.5 bg-[#FCA417] text-gray-800 font-bold text-sm border rounded-full w-4 h-4 flex items-center justify-center '>{totalQuantity}</span>
         <FiShoppingBag className='text-[#FCA417] h-6 w-6' />
       </div>
 
