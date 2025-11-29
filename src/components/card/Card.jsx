@@ -4,6 +4,8 @@ import { GiChickenOven } from "react-icons/gi";
 import { TiStarFullOutline } from "react-icons/ti";
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../../features/cart/cartSlice';
+import toast from 'react-hot-toast';
+import { openCart } from '../../features/ui/uiSlice';
 
 const Card = ({ item }) => {
 
@@ -11,7 +13,10 @@ const Card = ({ item }) => {
 
   const handleAddToCart = () => {
     dispatch(addToCart(item));
+    dispatch(openCart())
+    handleToast();
   }
+  const handleToast = () => toast.success(`${item.food_name} added to cart!`);
 
   return (
     <div

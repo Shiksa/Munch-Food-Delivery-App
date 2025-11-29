@@ -1,17 +1,27 @@
 import React, { use, useState } from 'react'
 import { IoMdClose } from "react-icons/io";
 import CartItem from './CartItem';
+import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { closeCart } from '../../features/ui/uiSlice';
 import { selectTotalPrice, selectTotalQuantity } from '../../features/cart/cartSelectors';
+import { clearCart } from '../../features/cart/cartSlice';
 
 const Cart = () => {
+
+  const navigate = useNavigate();
 
   const activeCart = useSelector(state => state.ui.cartVisible);
 
   const cartItems = useSelector((state) => state.cart.cartItems)
 
   const dispatch = useDispatch();
+  const handleCloseCart = () => {
+    dispatch(closeCart());
+  }
+  // const handleClearCart = () => {
+  //   dispatch(clearCart());
+  // }
 
   const totalQuantity = useSelector(selectTotalQuantity)
   const totalAmount = useSelector(selectTotalPrice)
@@ -31,7 +41,7 @@ const Cart = () => {
       <div className="flex justify-between items-center mb-4">
         <span className="text-xl font-bold text-gray-800">My Order</span>
         <IoMdClose
-          onClick={() => dispatch(closeCart())}
+          onClick={handleCloseCart}
           className="border-2 border-gray-600 text-gray-600 p-1 text-xl rounded-md hover:border-[#FCA417] hover:text-[#FCA417] cursor-pointer" />
       </div>
 
@@ -51,6 +61,11 @@ const Cart = () => {
         <h3 className="text-sm font-semibold text-gray-700 mb-3">Total Amount: ₹{totalAmount}</h3>
 
         <button
+          onClick={() => {
+            // handleClearCart();
+            handleCloseCart();
+            navigate("/success")
+          }}
           className="
           bg-green-500 w-full py-2 
           text-white font-bold rounded-md 

@@ -1,14 +1,24 @@
 import React from 'react'
-import { categories } from '.'
+import { categories } from './index'
+import { useDispatch } from 'react-redux';
+import { categoryFilter } from '../../features/filter/filterSlice';
+
 
 const Category = () => {
+
+  const dispatch = useDispatch();
+  const handleCatagory = (category) => {
+    dispatch(categoryFilter(category.slug));
+  }
+
   return (
-    <div className="w-full pt-5 px-3">
+    <div className="w-full pt-5 px-3 ">
       <div className="flex flex-wrap justify-center items-center gap-3 sm:gap-4 md:gap-5">
 
         {categories.map((category) => (
           <div
             key={category.id}
+            onClick={() => handleCatagory(category)}
             className="
               flex flex-col items-center justify-center
               bg-white shadow-md rounded-lg

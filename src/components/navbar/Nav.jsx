@@ -4,10 +4,15 @@ import { FiShoppingBag } from "react-icons/fi";
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleCart } from '../../features/ui/uiSlice';
 import { selectTotalQuantity } from '../../features/cart/cartSelectors';
+import { searchFilter } from '../../features/filter/filterSlice';
 
 const Nav = () => {
 
   const dispatch = useDispatch()
+
+  const handleSearch = (e) => {
+    dispatch(searchFilter(e.target.value))
+  }
 
   const handleToggleCart = () => {
     dispatch(toggleCart())
@@ -24,7 +29,7 @@ const Nav = () => {
 
       <form action="" className='w-[60%] bg-white flex items-center px-2 md-px-5 py-2 rounded-xl gap-2 shadow-xl'>
         <IoSearchSharp className='text-gray-800 text-xl' />
-        <input type="search" name='search' placeholder='Search for dishes . . .' autoComplete='off' className=' rounded-md text-black w-full outline-none ' />
+        <input type="search" name='search' placeholder='Search for dishes . . .' autoComplete='off' className=' rounded-md text-black w-full outline-none ' onChange={handleSearch} />
       </form>
 
       <div onClick={handleToggleCart} className={`h-10 w-10 flex justify-center items-center 

@@ -3,6 +3,7 @@ import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
 import { MdDelete } from "react-icons/md";
 import { useDispatch } from 'react-redux';
 import { decrementQuantity, incrementQuantity, removeFromCart } from '../../features/cart/cartSlice';
+import toast from 'react-hot-toast';
 
 
 const CartItem = ({ item }) => {
@@ -11,6 +12,13 @@ const CartItem = ({ item }) => {
 
   const handleRemoveFromCart = () => {
     dispatch(removeFromCart(item))
+    handleToast();
+  }
+
+  const handleToast = () => {
+    toast(`${item.food_name} removed successfully!`, {
+      icon: '🗑️',
+    });
   }
 
   const handleIncrement = () => {

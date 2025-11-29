@@ -3,6 +3,8 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Home from './pages/Home'
 import Success from './pages/Success'
 import NotFound from './pages/NotFound'
+import { Toaster } from 'react-hot-toast'
+import ProtectedRoute from './components/protectedRoute/ProtectedRoute'
 
 const router = createBrowserRouter([
   {
@@ -11,7 +13,9 @@ const router = createBrowserRouter([
   },
   {
     path: '/success',
-    element: <Success />
+    element: <ProtectedRoute>
+      <Success />
+    </ProtectedRoute>
   },
   {
     path: '*',
@@ -21,7 +25,10 @@ const router = createBrowserRouter([
 
 const App = () => {
   return (
-    <RouterProvider router={router} />
+    <>
+      <Toaster position="top-right" reverseOrder={false} />
+      <RouterProvider router={router} />
+    </>
   )
 }
 
