@@ -30,7 +30,7 @@ const Cart = () => {
     <div className={`
       fixed right-0 top-16 
       w-full md:w-[22vw] 
-      h-[calc(100vh-8rem)] 
+      h-[calc(100vh-9rem)] 
       bg-[#e8d5b8] shadow-lg p-5 
       flex flex-col
       ${activeCart ? 'translate-x-0' : 'translate-x-full'}
