@@ -21,7 +21,7 @@ const Card = ({ item }) => {
   return (
     <div
       className="
-        w-[46%] sm:w-[48%] md:w-[30%] lg:w-[19%] xl:w-[18%]
+        w-[46%] md:w-[30%] lg:w-[19%] xl:w-[18%]
         bg-white p-3 rounded-xl 
         flex flex-col gap-2 shadow-lg 
         hover:scale-105 transition-all duration-300 cursor-pointer
